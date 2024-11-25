@@ -47,7 +47,17 @@ void setup()
   }
   sht.setAccuracy(SHTSensor::SHT_ACCURACY_MEDIUM);
 
-  M5.Lcd.setTextColor(BLUE);
+// Mahlt die wolken und sonne
+  M5.Lcd.fillCircle(68, 39, 15, WHITE);
+  M5.Lcd.fillCircle(50, 57, 15, WHITE);
+  M5.Lcd.fillCircle(34, 74, 15, WHITE);
+  M5.Lcd.fillCircle(46, 92, 15, WHITE);
+  M5.Lcd.fillCircle(67, 85, 15, WHITE);
+  M5.Lcd.fillCircle(74, 63, 15, WHITE);
+  M5.Lcd.fillCircle(53, 76, 15, WHITE);
+  M5.Lcd.fillCircle(22, 31, 15, YELLOW);
+
+  M5.Lcd.setTextColor(WHITE);
   M5.Lcd.setTextSize(4);
 
   ArduinoCloud.begin(ArduinoIoTPreferredConnection);
@@ -66,7 +76,7 @@ void loop()
   ArduinoCloud.update();
   M5.update();
 
-  // Control NeoPixel color based on temperature
+  // Controliert Die Led Pixel an hand von der Temperatur
   if (sht.readSample())
   {
     aktuelleTemperatur = sht.getTemperature();
@@ -99,7 +109,7 @@ void loop()
     pixels.clear();
     //delay(1000);
 
-    // Continue with your existing temperature and humidity display code
+    // Dieser Teil ist für DIe Messung von Der Temperatur und Der Luftfeuchtigkeit
     if (letzteTemperatur != aktuelleTemperatur)
     {
       letzteTemperatur = aktuelleTemperatur;
@@ -128,7 +138,7 @@ void loop()
   }
 
 }
-
+ 
 void writeTemp(int temperatur)
 {
   // Add your code here to act upon Temperatur change
